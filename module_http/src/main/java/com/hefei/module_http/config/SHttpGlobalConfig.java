@@ -2,6 +2,7 @@ package com.hefei.module_http.config;
 
 import com.hefei.module_http.SHttp;
 import com.hefei.module_http.core.ApiCookie;
+import com.hefei.module_http.interceptor.NoCacheInterceptor;
 import com.hefei.module_http.interceptor.OfflineCacheInterceptor;
 import com.hefei.module_http.interceptor.OnlineCacheInterceptor;
 import com.hefei.module_http.mode.SHttpHeaders;
@@ -180,18 +181,8 @@ public class SHttpGlobalConfig {
      * 设置不缓存
      */
     public SHttpGlobalConfig noCache() {
-        for (Interceptor interceptor : globalInterceptors) {
-            if (interceptor instanceof OnlineCacheInterceptor
-                    || interceptor instanceof OfflineCacheInterceptor) {
-                globalInterceptors.remove(interceptor);
-            }
-        }
-        for (Interceptor interceptor : globalNetworkInterceptors) {
-            if (interceptor instanceof OnlineCacheInterceptor
-                    || interceptor instanceof OfflineCacheInterceptor) {
-                globalNetworkInterceptors.remove(interceptor);
-            }
-        }
+        networkInterceptor(new NoCacheInterceptor());
+        interceptor(new NoCacheInterceptor());
         this.httpCache = null;
         return this;
     }
@@ -269,7 +260,7 @@ public class SHttpGlobalConfig {
      */
     public SHttpGlobalConfig interceptor(Interceptor interceptor) {
         if (interceptor != null) {
-            globalInterceptors.add(interceptor);
+            SHttp.getOkHttpBuilder().addInterceptor(interceptor);
         }
         return this;
     }
@@ -279,7 +270,7 @@ public class SHttpGlobalConfig {
      */
     public SHttpGlobalConfig networkInterceptor(Interceptor interceptor) {
         if (interceptor != null) {
-            globalNetworkInterceptors.add(interceptor);
+            SHttp.getOkHttpBuilder().addNetworkInterceptor(interceptor);
         }
         return this;
     }

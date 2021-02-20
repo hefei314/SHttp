@@ -98,7 +98,7 @@ public class PostRequest extends BaseHttpRequest<PostRequest> {
     public PostRequest addForm(String formName, Object formValue) {
         if (formName != null && formValue != null) {
             this.forms.put(formName, formValue);
-        }
+        }  
         return this;
     }
 
