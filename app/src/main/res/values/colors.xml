@@ -3,4 +3,26 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="background">#F4F4F4</color>
+
+    <color name="line">#EEEEEE</color>
+
+    <color name="navSelected">#507BFF</color>
+    <color name="navUnselected">#9BA0B5</color>
+
+    <color name="tabSelected">#507BFF</color>
+    <color name="tabUnselected">#8A8989</color>
+
+    <color name="primaryRed">#E74C3C</color>
+    <color name="primaryBlack">#000000</color>
+    <color name="primaryWhite">#FFFFFF</color>
+    <color name="primaryYellow">#F5A623</color>
+
+    <color name="btnUnable">#CCCCCD</color>
+    <color name="btnBlue">#507BFF</color>
+    <color name="btnBlueHold">#3D6CFB</color>
+
+    <color name="textHint">#CBCBCB</color>
+    <color name="textNormal">#333333</color>
 </resources>

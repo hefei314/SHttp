@@ -1,3 +1,4 @@
-include ':module_http'
-include ':app'
 rootProject.name = "SHttp"
+include ':app'
+include ':module_common'
+include ':module_retrofit'
