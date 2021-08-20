@@ -2,8 +2,8 @@ package com.hefei.http.core;
 
 import android.content.Context;
 
-import com.hefei.common.cache.DiskCache;
 import com.hefei.http.ViseConfig;
+import com.hefei.http.cache.DiskCache;
 import com.hefei.http.mode.ApiHost;
 import com.hefei.http.mode.CacheMode;
 import com.hefei.http.mode.CacheResult;
