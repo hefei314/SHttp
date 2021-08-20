@@ -4,7 +4,7 @@
     <item android:id="@+id/menu_get"
         android:title="GET"/>
 
-    <item android:id="@+id/menu_upload"
-        android:title="UPLOAD"/>
+    <item android:id="@+id/menu_get2"
+        android:title="GET2"/>
 
 </menu>

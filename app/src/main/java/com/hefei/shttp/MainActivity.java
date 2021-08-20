@@ -7,9 +7,9 @@ import android.view.MenuItem;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.gson.Gson;
+import com.hefei.http.ViseHttp;
 import com.hefei.retrofit.HttpUtils;
 import com.hefei.retrofit.callback.ACallback;
-import com.hefei.retrofit.callback.UCallback;
 import com.hefei.shttp.adapter.CategoryListAdapter;
 import com.hefei.shttp.databinding.ActivityMainBinding;
 import com.hefei.shttp.entity.CategoryBean;
@@ -18,8 +18,6 @@ import com.hefei.shttp.support.base.BaseBindingActivity;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
-
-import retrofit2.Call;
 
 public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
 
@@ -48,8 +46,8 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_get) {
             get();
-        } else if(item.getItemId() == R.id.menu_upload) {
-            upload();
+        } else if (item.getItemId() == R.id.menu_get2) {
+            get2();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -73,32 +71,22 @@ public class MainActivity extends BaseBindingActivity<ActivityMainBinding> {
                 });
     }
 
-    private void upload() {
-        HttpUtils.UPLOAD("", new UCallback() {
-            @Override
-            public void onProgress(long currentLength, long totalLength, float percent) {
+    private void get2() {
+        ViseHttp.GET("categories/Article")
+                .request(new com.hefei.http.callback.ACallback<Data<List<CategoryBean>>>() {
+                    @Override
+                    public void onSuccess(Data<List<CategoryBean>> data) {
+                        if (data.getStatus() == 100) {
+                            Logger.e(new Gson().toJson(data.getData()));
 
-            }
+                            categoryListAdapter.setNewInstance(data.getData());
+                        }
+                    }
 
-            @Override
-            public void onFail(int errCode, String errMsg) {
+                    @Override
+                    public void onFail(int errCode, String errMsg) {
 
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-
-            }
-        }).request(new ACallback<Object>() {
-            @Override
-            public void onSuccess(Object data) {
-
-            }
-
-            @Override
-            public void onFail(String errMsg) {
-
-            }
-        });
+                    }
+                });
     }
 }
